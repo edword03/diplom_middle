@@ -1,0 +1,31 @@
+{
+  "name": "diplom_middle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=prodaction"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edword03/diplom_middle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edword03/diplom_middle/issues"
+  },
+  "homepage": "https://github.com/edword03/diplom_middle#readme",
+  "dependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "path": "^0.12.7",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
