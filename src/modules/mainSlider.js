@@ -1,5 +1,5 @@
-const mainSlider = () => {
-  const slide = document.querySelectorAll('.main-slider > .slide');
+const mainSlider = (selector) => {
+  const slide = document.querySelectorAll(selector);
 
   let currentSlide = 0,
   interval;

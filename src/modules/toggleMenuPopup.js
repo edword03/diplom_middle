@@ -1,7 +1,8 @@
 const popupMenu = () => {
   const menuBtn = document.getElementById('burgerBtn'),
     menuTop = document.querySelector('.top-menu'),
-    hiddenMenu = document.querySelector('.popup-menu');
+    hiddenMenu = document.querySelector('.popup-menu'),
+    menuButton = document.querySelector('.menu-button');
   
   //фиксирует меню-бургер
   window.addEventListener('scroll', () => {
@@ -18,9 +19,8 @@ const popupMenu = () => {
       menuTop.style = '';
     }
   });
-
-  //открытие меню по нажатию на бургер и закрытие
-  if (document.documentElement.clientWidth < 768) {
+  
+  const menuListener = () => {
     menuBtn.addEventListener('click', () => {
       hiddenMenu.style.display = 'flex';
 
@@ -33,13 +33,23 @@ const popupMenu = () => {
           target = target.closest('.scroll');
           if(target) {
             hiddenMenu.style.display = 'none';
+            }
           }
-        }
+        });
       });
-    });
+  };
+
+  //открытие меню по нажатию на бургер и закрытие
+  window.addEventListener('resize', () => {
+  if (document.documentElement.clientWidth < 768) {
+    menuListener();
+    }
+  });
+
+  if(menuButton.style.display !== 'none') {
+    menuListener();
   }
 
-  
   //скрыть или отобразить стрелку
   const hideArrow = () => {
     const totop = document.getElementById('totop');
