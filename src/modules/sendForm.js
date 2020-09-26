@@ -33,7 +33,7 @@ const sendForm= () => {
 
   const createDataSend = (form) => {
     statusMessage.textContent = loadMesage;
-            form.append(statusMessage);
+    statusMessage.style.cssText = 'color: #fff';
 
       const formData = new FormData(form);
             let body = {};
@@ -64,46 +64,52 @@ const sendForm= () => {
                   thanks.style.display = 'none';
                 }
               });
+              statusMessage.textContent = '';
             })
             .catch(error => {
               statusMessage.textContent = errorMessage;
+              statusMessage.style.cssText = 'color: #FF0000';
               console.error(error);
             });
   };
 
-  const checkInput = (form, i) => {
-    if(inputsCheck[i].checked === true) { 
-      createDataSend(form);
-     } else {
-       statusMessage.textContent = errorRequired;
-       statusMessage.style.cssText = `font-size: 16px; color: #FF0000`;
-       form.append(statusMessage);
-     }
-  }
-
   const formSend = (e, form) => {
-    let target = e.target;
     e.preventDefault();
-    if(!target.matches('#footer_form')) {
-      for(let i = 0; i < inputsCheck.length; i++) {
-        if(i === 0) {
-          checkInput(form, 0);
-        } else if(i === 1) {
-          checkInput(form, 1);
-        } else if(i === 2) {
-          checkInput(form, 0);
-        } else if(i === 3) {
-          checkInput(form, 3);
-        }
-      }
-    } else {
-      createDataSend(form);
-    }
-
+    createDataSend(form);
   };
 
+  const validCheck = (form) => {
+    form.addEventListener('submit', (e) => {
+      let target = e.target;
+      if(target.matches('#footer_form')){
+        if(!form.clubName[0].checked && !form.clubName[1].checked) {
+          e.preventDefault();
+          form.append(statusMessage);
+          statusMessage.textContent = 'Необходимо выбрать клуб!';
+          statusMessage.style.cssText = `color: #FF0000`;
+          return false;
+        } else {
+          form.append(statusMessage);
+          formSend(e, form);
+        }
+      }
+      if(!form.check.checked) {
+        e.preventDefault();
+        form.append(statusMessage);
+        statusMessage.textContent = errorRequired;
+        statusMessage.style.cssText = `color: #FF0000`;
+        return false;
+      } else {
+        form.append(statusMessage);
+        formSend(e, form);
+      }
+    });
+  };
+
+
   forms.forEach(item => {
-    item.addEventListener('submit', e => formSend(e, item));
+    validCheck(item);
+    // item.addEventListener('submit', e => formSend(e, item));
   });
 
   const sendData = (body) => {

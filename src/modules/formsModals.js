@@ -5,7 +5,7 @@ const showModal = () => {
   callbackForm = document.getElementById('callback_form'),
   visitForm = document.getElementById('free_visit_form'),
   header = document.querySelector('.head-main');
-  const allInputs = document.querySelectorAll();
+  // const allInputs = document.querySelectorAll();
 
 
   const openModal = (el, val) => {
@@ -17,16 +17,16 @@ const showModal = () => {
 
       if (target.matches('.close_icon')) {
         el.style.display = 'none';
-        val.value = '';
+        // val.value = '';
       }
       target = target.closest('.form-wrapper');
       if (!target) {
         el.style.display = 'none';
-        val.value = '';
+        // val.value = '';
       }
       if(event.target.matches('.close-btn')){
         el.style.display = 'none';
-        val.value = '';
+        // val.value = '';
       }
     });
   };
