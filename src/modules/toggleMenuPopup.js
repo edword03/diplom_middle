@@ -19,7 +19,16 @@ const popupMenu = () => {
       menuTop.style = '';
     }
   });
-  
+
+  const showScroll = (event, target) => {
+    event.preventDefault();
+        const blockID = target.getAttribute('href').substring(1);
+        document.getElementById(blockID).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+  };
+
   const menuListener = () => {
     menuBtn.addEventListener('click', () => {
       hiddenMenu.style.display = 'flex';
@@ -34,6 +43,11 @@ const popupMenu = () => {
           if(target) {
             hiddenMenu.style.display = 'none';
             }
+          }
+
+          target = event.target;
+          if(target.matches('a[href*="#"]')) {
+            showScroll(event, target);
           }
         });
       });
@@ -61,6 +75,14 @@ const popupMenu = () => {
       } else {
         totop.style.display = 'none';
       }
+    });
+
+    totop.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
   };
 

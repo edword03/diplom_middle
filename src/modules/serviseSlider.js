@@ -17,7 +17,7 @@ const slideSlider = () => {
 
     if (target.matches('.next > span, .fa-angle-right')) {
       position -= width;
-      Math.max(position, -width * (servesSlide.length - 1));
+      Math.max(position, -width * (servesSlide.length ));
       if (position >= -1125) {
         servesSlide[0].style.marginLeft = position + 'px';
       } else if (position <= -1125){

@@ -7,6 +7,7 @@ import autoPlaySlide from './modules/mainSlider';
 import popupMenu from './modules/toggleMenuPopup';
 import slideGallery from './modules/photoGallery';
 import servesSlide from './modules/serviseSlider';
+import cardOrder from './modules/calculator';
 
 popupMenu();
 //выбрать клуб
@@ -18,6 +19,6 @@ autoPlaySlide('.main-slider > .slide');
 // autoPlaySlide('.gallery-slider > .slide');
 slideGallery();
 servesSlide();
-
+cardOrder();
 
 sendForm();
