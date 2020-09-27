@@ -79,10 +79,12 @@ const sendForm= () => {
     phoneVal = form.querySelector('input[type="tel"]');
     form.addEventListener('submit', (e) => {
       let target = e.target;
-      if((phoneVal.value.slice(0, 1) === '+' && phoneVal.value.length > 7) || phoneVal.value.length > 7) {
-        phoneVal.addEventListener('input', () =>  phoneVal.style.border = '');
-      } else {
-        phoneVal.style.border = '2px solid #FF0000'
+      phoneVal.addEventListener('input', () =>  phoneVal.style.border = '');
+      if((phoneVal.value.slice(0, 1) === '+' && phoneVal.value.length < 7) || phoneVal.value.length < 7) {
+        phoneVal.style.border = '2px solid #FF0000';
+        form.append(statusMessage);
+        statusMessage.textContent = 'Минимальное допустимое количество цифр - 7';
+        statusMessage.style.cssText = `color: #FF0000`;
         e.preventDefault();
         return false;
       }
