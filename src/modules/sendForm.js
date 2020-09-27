@@ -6,16 +6,13 @@ const sendForm= () => {
   const forms = document.querySelectorAll('form'),
   thanks = document.getElementById('thanks'),
   callbackForm = document.getElementById('callback_form'),
-  freeVisitForm = document.getElementById('free_visit_form'),
-  inputsCheck = document.querySelectorAll('input[type="checkbox"]');
+  freeVisitForm = document.getElementById('free_visit_form');
 
 
   const statusMessage = document.createElement('div'),
     errorMessageRequire = document.createElement('div');
 
   statusMessage.style.cssText = `font-size: 4 rem; color: #fff`;
-  errorMessageRequire.style.cssText = `font-size: 16px; color: #FF0000`;
-  errorMessageRequire.textContent = errorRequired;
 
   const validationForms = () => {
     document.body.addEventListener('input', event => {
@@ -78,9 +75,17 @@ const sendForm= () => {
     createDataSend(form);
   };
 
-  const validCheck = (form) => {
+  const validCheck = (form, phoneVal) => {
+    phoneVal = form.querySelector('input[type="tel"]');
     form.addEventListener('submit', (e) => {
       let target = e.target;
+      if((phoneVal.value.slice(0, 1) === '+' && phoneVal.value.length > 7) || phoneVal.value.length > 7) {
+        phoneVal.addEventListener('input', () =>  phoneVal.style.border = '');
+      } else {
+        phoneVal.style.border = '2px solid #FF0000'
+        e.preventDefault();
+        return false;
+      }
       if(target.matches('#footer_form')){
         if(!form.clubName[0].checked && !form.clubName[1].checked) {
           e.preventDefault();
@@ -109,7 +114,6 @@ const sendForm= () => {
 
   forms.forEach(item => {
     validCheck(item);
-    // item.addEventListener('submit', e => formSend(e, item));
   });
 
   const sendData = (body) => {

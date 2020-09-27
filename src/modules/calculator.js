@@ -4,8 +4,7 @@ const calculateCost = () => {
     priceTotalValue = document.getElementById('price-total'),
     time = document.querySelectorAll('.time > input'),
     promoCode = document.getElementById('promoCode'),
-    mozaikaCheck = document.getElementById('card_leto_mozaika'),
-    shelkovoCheck = document.getElementById('card_leto_schelkovo');
+    mozaikaCheck = document.getElementById('card_leto_mozaika');
   const code = 'ТЕЛО2020';
   
   let discount,
@@ -25,7 +24,7 @@ const calculateCost = () => {
       m12: 19900
     }
   };
-
+  
   const getPriceClub = (club) => {
     time.forEach(i => {
       if(i.id === 'm1' && i.checked) {
@@ -44,28 +43,31 @@ const calculateCost = () => {
   };
 
   const countSum = () => {
-    if(mozaikaCheck.checked) {
-      getPriceClub(price.mozaika);
+    if (promoCode.value.trim() === code) {
+      discount = 0.3;
+
+      if(mozaikaCheck.checked) {
+        getPriceClub(price.mozaika);
+      } else {
+        getPriceClub(price.schelkovo);
+      }
+
+      priceTotalValue.textContent = Math.round(cost - (cost * discount));
     } else {
-      getPriceClub(price.schelkovo);
+      if(mozaikaCheck.checked) {
+        getPriceClub(price.mozaika);
+      } else {
+        getPriceClub(price.schelkovo);
+      }
+
+       priceTotalValue.textContent = cost;
     }
     
-    priceTotalValue.textContent = cost;
   };
   
   if(promoCode) {
     promoCode.addEventListener('input', (e) => {
-      if (promoCode.value === code) {
-        discount = 0.3;
-        
-        for(let key in price) {
-          if (typeof (price[key])=== 'object') {
-            for(let i in price[key]) {
-              price[key][i] = Math.round(price[key][i] - (price[key][i] * discount));
-            }
-          }
-        }
-      }
+      countSum();
     });
 
     cardOrder.addEventListener('change', () => {
