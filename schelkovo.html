@@ -53,6 +53,33 @@
       fa-angle-right::before{
         content: "\f105";
       }
+      .gallery-dots{
+        left: 0;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        bottom: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        margin: 20px auto 0;
+        z-index: 13;
+      }
+
+      .dot {
+        background-color: #fff;
+        cursor: pointer;
+        height: 4px;
+        width: 25px;
+        margin: 10px 3px;
+        display: inline-block;
+        border-radius: 25%;
+      }
+      .dot-active{
+        background-color: #f4c71b;
+      }
     </style>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script src="./dist/main.js" defer></script>
@@ -420,6 +447,13 @@
                     <i class="fa fa-angle-right"></i>
                   </span>
                 </div>
+                <ul class="gallery-dots">
+                  <li class="dot dot-active"></li>
+                  <li class="dot"></li>
+                  <li class="dot"></li>
+                  <li class="dot"></li>
+                  <li class="dot"></li>
+                </ul>
             </div>
         </div>
     </div>
