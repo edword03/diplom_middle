@@ -1,14 +1,15 @@
-'use strict';
+// 'use strict';
 const showModal = () => {
   const gif = document.querySelector('.fixed-gift'),
   giftModal = document.getElementById('gift'),
   callbackForm = document.getElementById('callback_form'),
+  callbackVal = callbackForm.querySelectorAll('input'),
   visitForm = document.getElementById('free_visit_form'),
   header = document.querySelector('.head-main');
-  // const allInputs = document.querySelectorAll();
 
 
-  const openModal = (el, val) => {
+  const openModal = (el) => {
+    let inputs = el.querySelectorAll('input');
     el.style.display = 'block';
 
     el.addEventListener('click', (event) => {
@@ -17,16 +18,25 @@ const showModal = () => {
 
       if (target.matches('.close_icon')) {
         el.style.display = 'none';
-        // val.value = '';
+        inputs.forEach(i => {
+          i.value = '';
+          if(i.checked) {
+            i.checked = false;
+          }
+        });
       }
       target = target.closest('.form-wrapper');
       if (!target) {
         el.style.display = 'none';
-        // val.value = '';
+        inputs.forEach(i => {
+          i.value = '';
+          if(i.checked) {
+            i.checked = false;
+          }
+        });
       }
       if(event.target.matches('.close-btn')){
         el.style.display = 'none';
-        // val.value = '';
       }
     });
   };

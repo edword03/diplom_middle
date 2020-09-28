@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 const calculateCost = () => {
   const cardOrder = document.getElementById('card_order'),
     priceTotalValue = document.getElementById('price-total'),

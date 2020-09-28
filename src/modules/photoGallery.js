@@ -1,4 +1,3 @@
-'use strict';
 const slideGallery = () => {
   const slide = document.querySelectorAll('.gallery-slider > .slide'),
   dots = document.querySelectorAll('.dot'),

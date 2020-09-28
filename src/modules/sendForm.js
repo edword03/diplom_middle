@@ -65,6 +65,11 @@ const sendForm= () => {
               statusMessage.textContent = errorMessage;
               statusMessage.style.cssText = 'color: #FF0000';
               console.error(error);
+            })
+            .then(() => {
+              setTimeout(() => {
+                thanks.style.display = 'none';
+              }, 5000);
             });
   };
 
@@ -97,16 +102,17 @@ const sendForm= () => {
           form.append(statusMessage);
           formSend(e, form);
         }
-      }
-      if(!form.check.checked) {
-        e.preventDefault();
-        form.append(statusMessage);
-        statusMessage.textContent = errorRequired;
-        statusMessage.style.cssText = `color: #FF0000`;
-        return false;
       } else {
-        form.append(statusMessage);
-        formSend(e, form);
+        if(!form.check.checked) {
+          e.preventDefault();
+          form.append(statusMessage);
+          statusMessage.textContent = errorRequired;
+          statusMessage.style.cssText = `color: #FF0000`;
+          return false;
+        } else {
+          form.append(statusMessage);
+          formSend(e, form);
+        }
       }
     });
   };
