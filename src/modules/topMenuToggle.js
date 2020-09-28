@@ -1,4 +1,3 @@
-// 'use strict';
 const topMenuToggle = () => {
   const selectClub = document.querySelector('.club-select'),
     hiddenMenuHeader = document.getElementById('toggleHeaderMenu');
@@ -12,6 +11,16 @@ const topMenuToggle = () => {
       } else {
         hiddenMenuHeader.style.display = 'none';
       }
+    }
+  });
+
+  document.body.addEventListener('click', (event) => {
+    let target = event.target;
+    console.log(target);
+    target = target.closest('.club-select');
+
+    if (!target) {
+      hiddenMenuHeader.style.display = 'none';
     }
   });
 
