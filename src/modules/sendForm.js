@@ -9,9 +9,7 @@ const sendForm= () => {
   freeVisitForm = document.getElementById('free_visit_form');
 
 
-  const statusMessage = document.createElement('div'),
-    errorMessageRequire = document.createElement('div');
-
+  const statusMessage = document.createElement('div');
   statusMessage.style.cssText = `font-size: 4 rem; color: #fff`;
 
   const validationForms = () => {
