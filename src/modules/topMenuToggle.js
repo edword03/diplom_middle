@@ -16,7 +16,6 @@ const topMenuToggle = () => {
 
   document.body.addEventListener('click', (event) => {
     let target = event.target;
-    console.log(target);
     target = target.closest('.club-select');
 
     if (!target) {

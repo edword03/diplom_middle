@@ -1,9 +1,7 @@
 const slideSlider = () => {
   const servicesSlider = document.querySelector('.services-slider'),
-  wrapper = document.querySelector('#services > .wrapper'),
   servesSlide = document.querySelectorAll('.services-slider > .slide');
   let width = 225,
-  count = 5,
   position = 0;   
 
   servicesSlider.addEventListener('click', event => {
